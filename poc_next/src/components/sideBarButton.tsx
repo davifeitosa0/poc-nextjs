@@ -10,10 +10,10 @@ export default function SideBarButton({
   placementText = "right",
 }: SideBarButtonProps) {
   return (
-    <div className="h-[50px] w-[50px] text-[#fefefe] p-1 flex items-center justify-center rounded-md hover:bg-[#09536b] hover:border hover:border-[#22485b] cursor-pointer">
-      <Tooltip title={tooltip} placement={placementText}>
+    <Tooltip title={tooltip} placement={placementText}>
+      <div className="h-[50px] w-[50px] text-[#fefefe] p-1 flex items-center justify-center rounded-md hover:bg-[#09536b] hover:border hover:border-[#fefefe] cursor-pointer">
         <FontAwesomeIcon className="w-6 h-6" icon={icon}></FontAwesomeIcon>
-      </Tooltip>
-    </div>
+      </div>
+    </Tooltip>
   );
 }
