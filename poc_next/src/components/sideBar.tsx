@@ -1,34 +1,21 @@
-import {
-  faBagShopping,
-  faBars,
-  faNewspaper,
-  faUserGroup,
-  faCode,
-} from "@fortawesome/free-solid-svg-icons";
+import SideBarButton from './sideBarButton';
 
-import SideBarButton from "./sideBarButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-export default function SideBar() {
+export default async function SideBar() {
+  const user = await fetch(`http://localhost:3000/api/user?id=1`).then((res) =>
+    res.json(),
+  );
+  console.log(user[0]?.imagem);
   return (
-    <div className="bg-[#073a4b] h-screen w-[6%]">
-      <div className="bg-[#22485b] flex items-center justify-center h-[11%] w-[100%]">
-        <FontAwesomeIcon
-          className="text-[#FEFEFE] h-1/3 w-1/2"
-          icon={faCode}
-        />
-      </div>
-      <div className="h-[89%] flex items-center justify-center">
-        <div className="flex flex-col h-[90%] items-center my-auto justify-between">
-          <div className="flex flex-col h-[40%] justify-between">
-            <SideBarButton icon={faUserGroup} tooltip={"Clientes"} />
-            <SideBarButton icon={faNewspaper} tooltip={"Notícias"} />
-            <SideBarButton icon={faBagShopping} tooltip={"Loja"} />
-          </div>
-
-          <div>
-            <SideBarButton icon={faBars} tooltip={"Menu"} />
-          </div>
+    <div className="bg-[#101010] h-screen w-[7%] flex items-center justify-center">
+      <div className=" flex items-start h-[90%] justify-center ">
+        <div className="flex flex-col justify-evenly">
+          <SideBarButton icon={'teenyicons:home-solid'} text="Home" />
+          <SideBarButton icon={'icon-park-outline:add'} text="Create" />
+          <SideBarButton
+            icon={'mingcute:user-4-fill'}
+            imagem={user[0]?.imagem}
+            text="Profile"
+          />
         </div>
       </div>
     </div>
