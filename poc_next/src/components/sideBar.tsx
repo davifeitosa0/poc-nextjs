@@ -6,7 +6,7 @@ export default async function SideBar() {
   );
   console.log(user[0]?.imagem);
   return (
-    <div className="bg-[#101010] h-screen w-[7%] flex items-center justify-center">
+    <div className="bg-[#101010] h-screen w-[10%] flex items-center justify-center">
       <div className=" flex items-start h-[90%] justify-center ">
         <div className="flex flex-col justify-evenly">
           <SideBarButton icon={'teenyicons:home-solid'} text="Home" />

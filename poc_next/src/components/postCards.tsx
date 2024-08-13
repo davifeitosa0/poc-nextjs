@@ -19,7 +19,7 @@ export default function PostCards({ nome, texto, dtPost, qtd_likes, imagem }: Po
   }
 
   return (
-    <div className="text-white p-5 border-b-2 border-b-[#323233]">
+    <div className="text-white py-5 border-b-2 border-b-[#323233]">
       <div className="w-full justify-between flex">
         <div className="flex flex-row gap-4">
           <Image

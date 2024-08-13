@@ -14,7 +14,9 @@ console.log(posts)
       <div className="flex">
         <SideBar />
         <div className="w-full">
-          {posts?.map((post) => (
+        <PostCardBlog></PostCardBlog>
+        <div className='px-6'>
+           {posts?.map((post) => (
             <PostCards
               key={post.id}
               id={post.id}
@@ -26,9 +28,9 @@ console.log(posts)
             />
           ))}
         </div>
-        <div className='w-full'>
-        <PostCardBlog></PostCardBlog>
+         
         </div>
+        
       </div>
     </main>
   );
