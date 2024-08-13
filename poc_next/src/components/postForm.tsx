@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
 
-export default function PostForm({userId}: {userId: number}) {
+export default function PostForm({ userId }: { userId: number }) {
   const [texto, setTexto] = useState('');
 
   const handleSubmit = async (texto: string): Promise<void> => {
     if (texto.trim() === '') return;
-  
+
     const response = await fetch('http://localhost:3000/api/post', {
       method: 'POST',
       headers: {
@@ -15,15 +15,16 @@ export default function PostForm({userId}: {userId: number}) {
       body: JSON.stringify({ texto, fk_usuario: userId }),
     });
     const result = await response.json();
-    if (response.ok) {
-    setTexto(''); 
-  } else {
-    alert(`Error: ${result.message}`);
-  }
-    console.log(result);
-  };
-  
 
+    if (response.ok) {
+      setTexto('');
+    } else {
+      alert(`Error: ${result.message}`);
+    }
+    console.log(result);
+
+    
+  };
 
   return (
     <div className="flex justify-between">

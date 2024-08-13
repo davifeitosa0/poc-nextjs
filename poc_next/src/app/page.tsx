@@ -10,10 +10,10 @@ export default async function Home() {
   const posts: Post[] = resp[0];
   console.log(posts);
   return (
-    <main className="min-h-screen bg-[#161616]">
-      <div className="flex">
+    <main className="min-h-screen bg-[#161616] w-full">
+      <div className="flex w-full">
         <SideBar />
-        <div className="w-full">
+        <div className="pl-[10%] w-full">
           <PostCardBlog></PostCardBlog>
           <div className="px-6">
             {posts?.map((post) => (
