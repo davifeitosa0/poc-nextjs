@@ -1,4 +1,3 @@
-// pages/api/user.js
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '../conection';
 

@@ -7,7 +7,7 @@ export default async function KaorasdasdasiNePage() {
     <div className="flex flex-col h-screen items-center justify-center">
       <h1> OLá Mundo</h1>
       <h1>{cep.logradouro} </h1>
-      <Icon icon="pixelarticons:heart"  style={{color: 'black'}} />
+      <Icon icon="pixelarticons:heart" style={{color: 'black'}} />
       <ExemploContador />
     </div>
   );
