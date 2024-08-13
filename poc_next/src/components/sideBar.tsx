@@ -1,7 +1,7 @@
 import SideBarButton from './sideBarButton';
 
 export default async function SideBar() {
-  const user = await fetch(`http://localhost:3000/api/user?id=1`).then((res) =>
+  const user = await fetch(`http://localhost:3000/api/user?id=2`).then((res) =>
     res.json(),
   );
   console.log(user[0]?.imagem);
