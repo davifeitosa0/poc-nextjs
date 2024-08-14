@@ -1,7 +1,7 @@
 import ExemploContador from '@/components/exemploContador';
 import { Icon } from '@iconify/react';
 
-export default async function KaorasdasdasiNePage() {
+export default async function TestePage() {
   const cep = await fetch('https://viacep.com.br/ws/01001000/json/').then((response) => response.json());
   return (
     <div className="flex flex-col h-screen items-center justify-center">

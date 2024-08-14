@@ -1,14 +1,20 @@
+'use server'
 import PostCards from '@/components/postCards';
 import SideBar from '@/components/sideBar';
 import { Post } from '@/types/posts';
 import PostCardBlog from '@/components/postCard';
+import next from 'next';
 
 export default async function Home() {
-  const respota = await fetch(`http://localhost:3000/api/post`);
+  const respota = await fetch(`http://localhost:3000/api/post`, {
+    next: {
+      tags: ['getposts'],
+    },
+  });
 
   const resp = await respota.json();
   const posts: Post[] = resp[0];
-  console.log(posts);
+  // console.log(posts);
   return (
     <main className="min-h-screen bg-[#161616] w-full">
       <div className="flex w-full">

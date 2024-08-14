@@ -4,7 +4,6 @@ export default async function SideBar() {
   const user = await fetch(`http://localhost:3000/api/user?id=2`).then((res) =>
     res.json(),
   );
-  console.log(user[0]?.imagem);
   return (
     <div className="bg-[#101010]  h-screen fixed left-0 w-[10%] flex items-center justify-center">
       <div className=" flex items-start h-[90%] justify-center ">

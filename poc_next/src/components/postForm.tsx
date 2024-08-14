@@ -1,43 +1,43 @@
 'use client';
-import { useState } from 'react';
+
+import { handleSubmit } from '@/utils/handlerPostForm';
+import { FormEvent } from 'react';
+import { toast } from 'react-toastify';
 
 export default function PostForm({ userId }: { userId: number }) {
-  const [texto, setTexto] = useState('');
+  const sendForm = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
 
-  const handleSubmit = async (texto: string): Promise<void> => {
-    if (texto.trim() === '') return;
+    if (data.get('texto') === '') {
+      toast.error('O campo de texto não pode ser vazio')
 
-    const response = await fetch('http://localhost:3000/api/post', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ texto, fk_usuario: userId }),
-    });
-    const result = await response.json();
-
-    if (response.ok) {
-      setTexto('');
-    } else {
-      alert(`Error: ${result.message}`);
+      return;
     }
-    console.log(result);
 
-    
+    handleSubmit(data, userId)
+      .then(() => {
+        form.reset();
+      })
+      .catch((error) => {
+        toast.error("Não foi possível completar sua solicitação. Tente novamente mais tarde.")
+      });
   };
 
   return (
-    <div className="flex justify-between">
-      <input
-        type="text"
-        value={texto}
-        onChange={(e) => setTexto(e.target.value)}
-        className="bg-transparent text-white border-none w-full h-auto focus:outline-none focus:border-transparent py-2"
-        placeholder="Escrever seu blog..."
-      />
-      <button onClick={() => handleSubmit(texto)} className="text-blue-500">
-        Post
-      </button>
-    </div>
+    <>
+      <form onSubmit={sendForm} className="flex justify-between">
+        <input
+          type="text"
+          name="texto"
+          className="bg-transparent text-white border-none w-full h-auto focus:outline-none focus:border-transparent py-2"
+          placeholder="Escrever seu blog..."
+        />
+        <button type="submit" className="text-blue-500">
+          Post
+        </button>
+      </form>
+    </>
   );
 }

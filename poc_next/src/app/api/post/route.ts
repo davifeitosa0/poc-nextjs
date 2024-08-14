@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { db } from '../conection';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export async function GET() {
   const rows = await db.query(
-    'SELECT * FROM post JOIN usuario ON usuario.id = post.fk_usuario',
+    'SELECT * FROM post JOIN usuario ON usuario.id = post.fk_usuario ORDER BY post.id DESC',
   );
 
   if (rows.length > 0) {
@@ -17,11 +18,8 @@ export async function GET() {
 }
 
 export async function POST(req: Request, res: NextResponse) {
-  const { texto, fk_usuario }: {texto: string, fk_usuario: number} = await req.json();
-  
-  if(texto === undefined || texto.trim() == "" || fk_usuario === undefined) {
-    return NextResponse.json({ message: 'Campos obrigatórios' }, { status: 400 });
-  }
+  const { texto, fk_usuario }: { texto: string; fk_usuario: number } =
+    await req.json();
 
   const rows = await db.query(
     'INSERT INTO post (texto, fk_usuario) VALUES (?, ?)',

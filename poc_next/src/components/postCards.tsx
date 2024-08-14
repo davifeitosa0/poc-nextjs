@@ -8,7 +8,7 @@ export default function PostCards({
   qtd_likes,
   imagem,
 }: Post) {
-  console.log(imagem);
+
   const dataHora = new Date(dtPost);
   const diffMilissegundos = new Date().getTime() - dataHora.getTime();
   let diffHoras = Math.floor(diffMilissegundos / (1000 * 60 * 60));
