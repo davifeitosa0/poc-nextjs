@@ -21,6 +21,14 @@ export async function POST(req: Request, res: NextResponse) {
   const { texto, fk_usuario }: { texto: string; fk_usuario: number } =
     await req.json();
 
+
+  if (texto?.trim() === '' || !fk_usuario) {
+    return NextResponse.json(
+      { message: 'Campos obrigatórios' },
+      { status: 400 },
+    );
+  }
+
   const rows = await db.query(
     'INSERT INTO post (texto, fk_usuario) VALUES (?, ?)',
     [texto, fk_usuario],

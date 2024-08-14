@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '../conection';
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const userId = parseInt(searchParams.get('id') ?? '');
+    const userId = Number(req.nextUrl.searchParams.get('id'));
+    console.log(userId);
+    
 
-    if (isNaN(userId)) {
+    if (!userId || isNaN(userId)) {
       return NextResponse.json({ message: 'ID invalido' }, { status: 400 });
     }
 
@@ -22,7 +23,7 @@ export async function GET(req: Request) {
     }
   } catch (error: any) {
     return NextResponse.json(
-      { message: 'Server error', error: error.message },
+      { message: 'Erro no servidor', error: error.message },
       { status: 500 },
     );
   }

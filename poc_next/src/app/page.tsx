@@ -8,6 +8,7 @@ import next from 'next';
 export default async function Home() {
   const respota = await fetch(`http://localhost:3000/api/post`, {
     next: {
+      revalidate: 10,
       tags: ['getposts'],
     },
   });

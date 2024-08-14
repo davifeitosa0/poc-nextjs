@@ -12,7 +12,6 @@ export default function PostForm({ userId }: { userId: number }) {
 
     if (data.get('texto') === '') {
       toast.error('O campo de texto não pode ser vazio')
-
       return;
     }
 
