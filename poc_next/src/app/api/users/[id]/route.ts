@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '../conection';
+import { db } from '../../conection';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, {params}: {params: {id: number}}) {
   try {
-    const userId = Number(req.nextUrl.searchParams.get('id'));
-    console.log(userId);
-    
-
+    const userId = params.id;
+  
     if (!userId || isNaN(userId)) {
       return NextResponse.json({ message: 'ID invalido' }, { status: 400 });
     }
