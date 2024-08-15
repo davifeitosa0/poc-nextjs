@@ -3,7 +3,7 @@ import Image from 'next/image';
 import PostForm from './postForm';
 
 export default async function PostCardBlog() {
-  const user = await fetch(`http://localhost:3000/api/user?id=2`).then((res) =>
+  const user = await fetch(`http://localhost:3000/api/users/2`).then((res) =>
     res.json(),
   );
   return (

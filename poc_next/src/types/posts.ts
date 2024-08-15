@@ -4,5 +4,6 @@ export interface Post {
     texto: string;
     dtPost: string;
     qtd_likes: number
-    imagem: string
+    imagem: string,
+    fk_usuario: number 
   }

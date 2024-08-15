@@ -1,8 +1,8 @@
 // PostCardBlog.js
 import Image from 'next/image';
 
-export default async function ProfileCard() {
-  const user = await fetch(`http://localhost:3000/api/user?id=2`).then((res) =>
+export default async function ProfileCard({id} : {id: number}) {
+  const user = await fetch(`http://localhost:3000/api/users/${id}`).then((res) =>
     res.json(),
   );
   return (

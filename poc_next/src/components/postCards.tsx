@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import { Post } from '@/types/posts';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import Link from 'next/link';
 export default function PostCards({
   nome,
   texto,
   dtPost,
   qtd_likes,
   imagem,
+  fk_usuario
 }: Post) {
-
   const dataHora = new Date(dtPost);
   const diffMilissegundos = new Date().getTime() - dataHora.getTime();
   let diffHoras = Math.floor(diffMilissegundos / (1000 * 60 * 60));
@@ -26,16 +27,16 @@ export default function PostCards({
   return (
     <div className="text-white py-5 border-b-2 border-b-[#323233]">
       <div className="w-full justify-between flex">
-        <div className="flex flex-row gap-4">
-          <Image
-            alt={''}
-            className="rounded-full"
-            width={25}
-            height={25}
-            src={imagem}
-          ></Image>
-          <h1>{nome}</h1>
-        </div>
+          <Link className='flex flex-row gap-4' href={`/perfil/${fk_usuario}`}>
+            <Image
+              alt={''}
+              className="rounded-full"
+              width={25}
+              height={25}
+              src={imagem}
+            ></Image>
+            <h1>{nome}</h1>
+          </Link>
         <h1 className="text-[#606060]">{textHoras}</h1>
       </div>
       <div className="pl-10 flex flex-col gap-2">

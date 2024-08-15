@@ -1,28 +1,37 @@
-'use server'
 import PostCards from '@/components/postCards';
+import ProfileCard from '@/components/profileCard';
 import SideBar from '@/components/sideBar';
 import { Post } from '@/types/posts';
-import PostCardBlog from '@/components/postCard';
-import next from 'next';
+import { notFound } from 'next/navigation';
 
-export default async function Home() {
-  const respota = await fetch(`http://localhost:3000/api/posts`, {
-    next: {
-      revalidate: 10,
-      tags: ['getposts'],
-    },
-  });
+export default async function PerfilPage({
+  params,
+}: {
+  params: { id: number };
+}) {
+  const userId = params.id;
+  if (isNaN(userId)) {
+    return notFound();
+  }
 
-  const resp = await respota.json();
-  const posts: Post[] = resp[0];
-  // console.log(posts);
+  const response: Post[][] = await fetch(`http://localhost:3000/api/posts/${userId}`)
+    .then((resp) => {
+      if (!resp.ok) {
+        throw new Error('Erro ao buscar os posts');
+      }
+      return resp.json()
+    })
+    .catch(() => notFound());
+
+    const posts: Post[] = response[0] ;
   return (
     <main className="min-h-screen bg-[#161616] w-full">
       <div className="flex w-full">
         <SideBar />
         <div className="pl-[10%] w-full">
-          <PostCardBlog></PostCardBlog>
+          <ProfileCard id={userId} />
           <div className="px-6">
+            <h1 className="text-2xl text-white font-semibold pt-6">Posts</h1>
             {posts?.map((post) => (
               <PostCards
                 key={post.id}
