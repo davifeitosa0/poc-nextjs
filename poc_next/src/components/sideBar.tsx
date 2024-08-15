@@ -1,10 +1,10 @@
+'use client'
 import Link from 'next/link';
 import SideBarButton from './sideBarButton';
+import { useUser } from '@/context/user-context';
 
-export default async function SideBar() {
-  const user = await fetch(`http://localhost:3000/api/users/2`).then((res) =>
-    res.json(),
-  );
+export default function SideBar() {
+  const { user } = useUser();
   return (
     <div className="bg-[#101010]  h-screen fixed left-0 w-[10%] flex items-center justify-center">
       <div className=" flex items-start h-[90%] justify-center ">
@@ -13,11 +13,13 @@ export default async function SideBar() {
             <SideBarButton icon={'teenyicons:home-solid'} text="Home" />
           </Link>
           <SideBarButton icon={'icon-park-outline:add'} text="Create" />
-          <SideBarButton
-            icon={'mingcute:user-4-fill'}
-            imagem={user[0]?.imagem}
-            text="Profile"
-          />
+          {user?.imagem && (
+            <SideBarButton
+              icon={'mingcute:user-4-fill'}
+              imagem={user?.imagem}
+              text="Profile"
+            />
+          )}
         </div>
       </div>
     </div>
