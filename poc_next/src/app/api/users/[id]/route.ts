@@ -20,9 +20,9 @@ export async function GET(req: NextRequest, {params}: {params: {id: number}}) {
         { status: 404 },
       );
     }
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
-      { message: 'Erro no servidor', error: error.message },
+      { message: 'Erro no servidor', error: (error as Error).message },
       { status: 500 },
     );
   }
