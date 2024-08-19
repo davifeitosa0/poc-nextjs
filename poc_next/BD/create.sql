@@ -11,6 +11,7 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE post (
+	id int primary key auto_increment,
 	texto VARCHAR(255),
 	dtPost DATETIME DEFAULT current_timestamp,
 	qtd_likes int,

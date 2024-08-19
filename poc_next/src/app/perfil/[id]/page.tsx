@@ -14,7 +14,9 @@ export default async function PerfilPage({
     return notFound();
   }
 
-  const response: Post[][] = await fetch(`http://localhost:3000/api/posts/${userId}`)
+  const response: Post[][] = await fetch(`http://localhost:3000/api/posts/${userId}`,{
+    cache: 'no-store',
+  })
     .then((resp) => {
       if (!resp.ok) {
         throw new Error('Erro ao buscar os posts');

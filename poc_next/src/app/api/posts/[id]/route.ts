@@ -19,9 +19,13 @@ export async function GET(
       .query('SELECT COUNT(*) from usuario where id = ?', userId)
       .then(([result]) => result[0]['COUNT(*)']);
 
-  
+    console.log(verifyUser);
+
     if (verifyUser == 0) {
-      return NextResponse.json({ message: 'Usuário não encontrado' }, { status: 404 });
+      return NextResponse.json(
+        { message: 'Usuário não encontrado' },
+        { status: 404 },
+      );
     }
     const rows = await db.query(
       'SELECT * FROM post JOIN usuario  ON usuario.id = post.fk_usuario WHERE fk_usuario = ?',
